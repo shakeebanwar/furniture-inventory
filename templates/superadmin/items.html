@@ -6,17 +6,17 @@
       
         <ol class="breadcrumb mb-30">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Category </li>
+            <li class="breadcrumb-item active">Items </li>
         </ol>
         <div class="row justify-content-between">
             <div class="col-lg-12">
-                <a href="" class="add-btn hover-btn">Add New</a>
+                <a href="/addItems" class="add-btn hover-btn">Add New</a>
             </div>
           
             <div class="col-lg-12 col-md-12">
                 <div class="card card-static-2 mt-30 mb-30">
                     <div class="card-title-2">
-                        <h4>All Category</h4>
+                        <h4>All Items</h4>
                     </div>
                     <div class="card-body-table">
                         <div class="table-responsive">
@@ -25,7 +25,10 @@
                                     <tr>
                                         
                                         
-                                        <th>Category Name</th>
+                                        <th>Name</th>
+                                        <th>Stock</th>
+                                        <th>Uplaod Date</th>
+                                        <th>Status</th>
                                         
                                         
                                         <th style="width: 150px;">Action</th>
@@ -37,11 +40,14 @@
                                     <tr>
                                        
                                         <td>{{i.Items_Name}}</td>
+                                        <td>{{i.Stock}}</td>
+                                        <td>{{i.Date_Time.date}}</td>
+                                        <td>{{i.Product_Status}}</td>
                                     
                                         <td class="action-btns">
 
                                             <!-- <a href="#" class="edit-btn"><i class="fas fa-edit"></i></a> -->
-                                            <a href="/deleteCategory/{{i.Category_Id}}" class="delete-btn"
+                                            <a href="/deleteitem/{{i.id}}" class="delete-btn"
                                                 title="Edit"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

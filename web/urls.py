@@ -4,11 +4,15 @@ from web.views import *
 urlpatterns = [
 
 #web urls  home
-path('superadminlogin',superadminlogin.as_view()),
-path('Dashboard',Dashboard.as_view()),
-path('allCategory',allCategory.as_view()),
-path('allItems',allItems.as_view()),
-
+path('superadminlogin',superadminlogin.as_view(),name="superadminlogin"),
+path('Dashboard',Dashboard.as_view(),name="Dashboard"),
+path('allCategory',allCategory.as_view(),name="allCategory"),
+path('addCategory',addCategory.as_view(),name="addCategory"),
+path('addItems',addItems.as_view(),name="addItems"),
+path('deleteCategory/<int:id>',deleteCategory.as_view(),name="deleteCategory"),
+path('allItems',allItems.as_view(),name="allItems"),
+path('logout',logout.as_view(),name="logout"),
+path('deleteitem/<int:itemid>',deleteitem.as_view(),name="deleteitem"),
 ]
 
 

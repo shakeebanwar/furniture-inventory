@@ -36,6 +36,7 @@ class Items(models.Model):
     Items_Name = models.CharField(max_length=255, default="")
     Stock = models.IntegerField(default=0)
     Product_Status = models.CharField(max_length=10, default="True")
+    Date_Time = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     Category_Id = models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
