@@ -15,26 +15,26 @@
                 <div class="card card-static-2 mb-30">
                 
                     <div class="card-body-table">
-                        <form action="/addItems" method="POST">
+                        <form action="" method="POST">
 
                         {% csrf_token %}
                         <div class="news-content-right pd-20">
                             <div class="form-group">
 
                                 <label class="form-label">Item name*</label>
-                                <input required type="text" class="form-control" placeholder="Enter Item name" name="name">
+                                <input required type="text" class="form-control" placeholder="Enter Item name" name="name" value="{{itemObj.Items_Name}}">
                             </div>
 
                             <div class="form-group">
 
                                 <label class="form-label">Stock*</label>
-                                <input required type="number" class="form-control" placeholder="Stock" name="stock">
+                                <input required type="number" class="form-control" placeholder="Stock" name="stock" value="{{itemObj.Stock}}">
                             </div>
 
                             <div class="form-group">
 
                                 <label class="form-label">Category name*</label>
-                                <select name="category" class="form-control" id="">
+                                <select name="category" class="form-control" id="categoryid" >
 
                                     {% for i in data %}
                                      <option value="{{i.Category_Id}}">{{i.Category_name}}</option>
@@ -64,5 +64,9 @@
         )
 
     }
+
+
+    let cat = document.getElementById('categoryid')
+    cat.value = '{{itemObj.Category_Id.Category_Id}}'
 </script>
 {% endblock body %}

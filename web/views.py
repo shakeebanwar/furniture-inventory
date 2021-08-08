@@ -138,7 +138,44 @@ class addCategory(View):
 
 
         
+class editCategory(View):
+    def get(self,request,id):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                data = Category.objects.get(Category_Id = id)
+                return render(request,'superadmin/editcategory.html',{'data':data})
 
+            return redirect('superadminlogin')
+
+        except:
+            return redirect('superadminlogin')
+
+    def post(self,request,id):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                name = request.POST['category']
+                data = Category.objects.filter(Category_name = name)
+                if not data:
+                    data = Category.objects.get(Category_Id = id)
+                    data.Category_name = name
+                    data.save()
+                
+                
+                return redirect('allCategory')
+
+            return redirect('superadminlogin')
+
+        except:
+            return redirect('superadminlogin')
+
+        
+     
+
+     
+
+    
 
 
 class allItems(View):
@@ -189,10 +226,47 @@ class addItems(View):
 
         except:
             return redirect('superadminlogin')
-        
 
- 
-      
+
+class editItems(View):
+    def get(self,request,itemid):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                itemObj = Items.objects.get(id = itemid)
+                data = Category.objects.all()
+                return render(request,'superadmin/edititems.html',{'data':data,'itemObj':itemObj})
+
+            return redirect('superadminlogin')
+
+        except:
+            return redirect('superadminlogin')
+
+    def post(self,request,itemid):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                name = request.POST['name']
+                stock = request.POST['stock']
+                category = request.POST['category']
+                categoryObj = Category.objects.get(Category_Id = category)
+                itemObj = Items.objects.get(id = itemid)
+                checkalready =  Items.objects.filter(Items_Name = name)
+                if not checkalready:
+                    itemObj.Items_Name = name
+                itemObj.Stock = stock
+                itemObj.Category_Id = categoryObj
+                itemObj.save()
+                return redirect('allItems')
+
+            return redirect('superadminlogin')
+
+
+        except:
+            return redirect('superadminlogin')
+
+    
+        
 class deleteitem(View):
     def get(self,request,itemid):
   

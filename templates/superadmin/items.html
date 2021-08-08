@@ -26,6 +26,7 @@
                                         
                                         
                                         <th>Name</th>
+                                        <th>Category</th>
                                         <th>Stock</th>
                                         <th>Uplaod Date</th>
                                         <th>Status</th>
@@ -40,13 +41,23 @@
                                     <tr>
                                        
                                         <td>{{i.Items_Name}}</td>
+                                        <td>{{i.Category_Id}}</td>
                                         <td>{{i.Stock}}</td>
                                         <td>{{i.Date_Time.date}}</td>
-                                        <td>{{i.Product_Status}}</td>
+
+                                        {% if i.Stock > 0 %}
+                                        <td><span class="badge-item badge-status">Available</span></td>
+                                        
+                                        {% else %}
+
+                                        <td><span class="badge-item badge-status">Out of Stock</span></td>
+                                        {% endif %}
+                                        
+                                   
                                     
                                         <td class="action-btns">
 
-                                            <!-- <a href="#" class="edit-btn"><i class="fas fa-edit"></i></a> -->
+                                            <a href="/editItems/{{i.id}}" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <a href="/deleteitem/{{i.id}}" class="delete-btn"
                                                 title="Edit"><i class="fas fa-trash-alt"></i></a>
                                         </td>
