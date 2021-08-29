@@ -3,11 +3,11 @@
 {% block body %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Items</h2>
+        <h2 class="mt-30 page-title">SubCategory</h2>
         <ol class="breadcrumb mb-30">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#">Items</a></li>
-            <li class="breadcrumb-item active">Add Items </li>
+            <li class="breadcrumb-item"><a href="#">Category</a></li>
+            <li class="breadcrumb-item active">Add SubCategory </li>
         </ol>
 
         <div class="row">
@@ -15,31 +15,19 @@
                 <div class="card card-static-2 mb-30">
                 
                     <div class="card-body-table">
-                        <form action="" method="POST">
+                        <form action="/addSubCategory" method="POST">
 
                         {% csrf_token %}
                         <div class="news-content-right pd-20">
                             <div class="form-group">
 
-                                <label class="form-label">Item name*</label>
-                                <input required type="text" class="form-control" placeholder="Enter Item name" name="name" value="{{itemObj.Items_Name}}">
+                                <label class="form-label">SubCategory*</label>
+                                <input required type="text" class="form-control" placeholder="Enter SubCategory" name="subcategory">
                             </div>
 
                             <div class="form-group">
 
-                                <label class="form-label">Stock*</label>
-                                <input required type="number" class="form-control" placeholder="Stock" name="stock" value="{{itemObj.Stock}}">
-                            </div>
-
-                            <div class="form-group">
-
-                                <label class="form-label">Price*</label>
-                                <input required type="number" class="form-control" placeholder="Price" name="price" value="{{itemObj.Price}}">
-                            </div>
-
-                            <div class="form-group">
-
-                                <label class="form-label">Category name*</label>
+                                <label class="form-label">Category*</label>
                                 <select name="category" class="form-control" id="categoryid" >
 
                                     {% for i in data %}
@@ -64,15 +52,11 @@
     if('{{status}}'){
 
         Swal.fire(
-            'Item Name Already Exist',
+            'SubCategory Already Exist',
           
             
         )
 
     }
-
-
-    let cat = document.getElementById('categoryid')
-    cat.value = '{{itemObj.Category_Id.Category_Id}}'
 </script>
 {% endblock body %}

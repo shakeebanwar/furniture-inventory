@@ -84,6 +84,20 @@ class allCategory(View):
         except:
             return redirect('superadminlogin')
 
+
+class allSubCategory(View):
+    def get(self,request):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                data = subCategory.objects.all()
+                return render(request,'superadmin/subcategory.html',{'data':data})
+
+            return redirect('superadminlogin')
+
+        except:
+            return redirect('superadminlogin')
+
     
 
 class deleteCategory(View):
@@ -101,7 +115,7 @@ class deleteCategory(View):
             return redirect('superadminlogin')
 
 
-        
+
 
 
 
@@ -135,6 +149,43 @@ class addCategory(View):
 
         except:
             return redirect('superadminlogin')
+
+
+class addSubCategory(View):
+    def get(self,request):
+        try:
+            sessionhandle = checkAdminSession(self,request)
+            if sessionhandle:
+                data = Category.objects.all()
+                return render(request,'superadmin/addsubcategory.html',{'data':data})
+
+            return redirect('superadminlogin')
+
+        except:
+            return redirect('superadminlogin')
+
+
+    def post(self,request):
+        try:
+        
+
+            name = request.POST['subcategory']
+            categoryid = request.POST['category']
+            checkalreeady = subCategory.objects.filter(sub_Category_name = name.lower())
+            if not checkalreeady:
+                categoryObj = Category.objects.get(Category_Id = categoryid)
+                createobj = subCategory(sub_Category_name = name.lower(),Category_Id = categoryObj )
+                createobj.save()
+                return redirect('allSubCategory')
+            
+            else:
+                data = Category.objects.all()
+                return render(request,'superadmin/addsubcategory.html',{'status':True,'data':data})
+
+        except:
+            return redirect('superadminlogin')
+
+
 
 
         
@@ -199,7 +250,8 @@ class addItems(View):
             sessionhandle = checkAdminSession(self,request)
             if sessionhandle:
                 data = Category.objects.all()
-                return render(request,'superadmin/addItems.html',{'data':data})
+                dataSub = subCategory.objects.all()
+                return render(request,'superadmin/addItems.html',{'data':data,'dataSub':dataSub})
 
             return redirect('superadminlogin')
 
@@ -213,10 +265,17 @@ class addItems(View):
             name = request.POST['name']
             stock = request.POST['stock']
             category = request.POST['category']
+            price = request.POST['price']
+            subcategory = request.POST['subcategory']
+            subcategory = request.POST['subcategory']
+            desc = request.POST['desc']
+
+            img = request.FILES['img']
             checkalreeady = Items.objects.filter(Items_Name = name.lower())
             if not checkalreeady:
                 categoryObj = Category.objects.get(Category_Id = category)
-                createobj = Items(Items_Name = name.lower() ,Stock = stock,Category_Id = categoryObj)
+                subcategoryObj = subCategory.objects.get(sub_Category_Id = subcategory)
+                createobj = Items(Items_Name = name.lower() ,Stock = stock,Category_Id = categoryObj,sub_Category_Id = subcategoryObj,Price = price,productimg = img,Description = desc)
                 createobj.save()
                 return redirect('allItems')
 
@@ -249,6 +308,7 @@ class editItems(View):
                 name = request.POST['name']
                 stock = request.POST['stock']
                 category = request.POST['category']
+                price = request.POST['price']
                 categoryObj = Category.objects.get(Category_Id = category)
                 itemObj = Items.objects.get(id = itemid)
                 checkalready =  Items.objects.filter(Items_Name = name)
@@ -256,6 +316,7 @@ class editItems(View):
                     itemObj.Items_Name = name
                 itemObj.Stock = stock
                 itemObj.Category_Id = categoryObj
+                itemObj.Price = price
                 itemObj.save()
                 return redirect('allItems')
 

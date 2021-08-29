@@ -24,10 +24,12 @@
                                 <thead>
                                     <tr>
                                         
-                                        
+                                        <th style="width:100px">Image</th>
                                         <th>Name</th>
                                         <th>Category</th>
+                                        <th>SubCategory</th>
                                         <th>Stock</th>
+                                        <th>Price</th>
                                         <th>Uplaod Date</th>
                                         <th>Status</th>
                                         
@@ -39,10 +41,17 @@
 
                                 {% for i in data  %}
                                     <tr>
+                                        <td>
+                                            <div class="cate-img-6">
+                                                <img src="{{i.productimg.url}}" alt="">
+                                            </div>
+                                        </td>
                                        
                                         <td>{{i.Items_Name}}</td>
                                         <td>{{i.Category_Id}}</td>
+                                        <td>{{i.sub_Category_Id}}</td>
                                         <td>{{i.Stock}}</td>
+                                        <td>{{i.Price}}</td>
                                         <td>{{i.Date_Time.date}}</td>
 
                                         {% if i.Stock > 0 %}

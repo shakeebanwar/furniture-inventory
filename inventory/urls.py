@@ -26,3 +26,8 @@ urlpatterns = [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+admin.site.site_header = "Rabani Store"
+admin.site.site_title = "Admin Portal"
+admin.site.index_title = "Welcome to Inventory Portal"

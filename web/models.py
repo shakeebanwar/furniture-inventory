@@ -30,14 +30,32 @@ class Category(models.Model):
 
 
 
+
+class subCategory(models.Model):
+
+    sub_Category_Id = models.AutoField(primary_key=True)
+    sub_Category_name  = models.CharField(max_length=200, default="")
+    Category_Id=models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
+
+  
+    
+    def __str__(self):
+        return self.sub_Category_name
+
+
+
 class Items(models.Model):
 
    
     Items_Name = models.CharField(max_length=255, default="")
     Stock = models.IntegerField(default=0)
+    Price = models.IntegerField(default=0)
+    Description = models.TextField(default="")
     Product_Status = models.CharField(max_length=10, default="True")
     Date_Time = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     Category_Id = models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
+    sub_Category_Id = models.ForeignKey(subCategory , on_delete=models.SET_NULL,blank=True,null=True)
+    productimg= models.ImageField(upload_to='product/',default="product/dummy.jpg")
 
     def __str__(self):
         return self.Items_Name

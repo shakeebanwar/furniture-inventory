@@ -15,7 +15,7 @@
                 <div class="card card-static-2 mb-30">
                 
                     <div class="card-body-table">
-                        <form action="/addItems" method="POST">
+                        <form action="/addItems" method="POST" enctype="multipart/form-data">
 
                         {% csrf_token %}
                         <div class="news-content-right pd-20">
@@ -33,7 +33,13 @@
 
                             <div class="form-group">
 
-                                <label class="form-label">Category name*</label>
+                                <label class="form-label">Price*</label>
+                                <input required type="number" class="form-control" placeholder="Price" name="price">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">Category*</label>
                                 <select name="category" class="form-control" id="">
 
                                     {% for i in data %}
@@ -43,6 +49,43 @@
                          
                                 </select>
                             </div>
+
+
+                            
+                            <div class="form-group">
+
+                                <label class="form-label">SubCategory*</label>
+                                <select name="subcategory" class="form-control" id="">
+
+                                    {% for i in dataSub %}
+                                     <option value="{{i.sub_Category_Id}}">{{i.sub_Category_name}}</option>
+
+                                    {% endfor %}
+                         
+                                </select>
+                            </div>
+
+
+                            
+                            
+                            <div class="form-group">
+
+                                <label class="form-label">Description*</label>
+                                <br>
+                                <textarea required class="form-contro" name="desc" rows="4" cols="120"></textarea>
+                               
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label class="form-label">Product Image*</label>
+                                <input required type="file" class="form-control" name="img">
+
+                              
+                            </div>
+                            
                             <button class="save-btn hover-btn" type="submit">Save</button>
                         </div>
 
