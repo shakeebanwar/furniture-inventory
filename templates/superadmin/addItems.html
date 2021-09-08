@@ -1,0 +1,111 @@
+{% extends 'superadmin/base.html' %}
+{% load static %}
+{% block body %}
+<main>
+    <div class="container-fluid">
+        <h2 class="mt-30 page-title">Items</h2>
+        <ol class="breadcrumb mb-30">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="#">Items</a></li>
+            <li class="breadcrumb-item active">Add Items </li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card card-static-2 mb-30">
+                
+                    <div class="card-body-table">
+                        <form action="/addItems" method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        <div class="news-content-right pd-20">
+                            <div class="form-group">
+
+                                <label class="form-label">Item name*</label>
+                                <input required type="text" class="form-control" placeholder="Enter Item name" name="name">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">Stock*</label>
+                                <input required type="number" class="form-control" placeholder="Stock" name="stock">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">Price*</label>
+                                <input required type="number" class="form-control" placeholder="Price" name="price">
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">Category*</label>
+                                <select name="category" class="form-control" id="">
+
+                                    {% for i in data %}
+                                     <option value="{{i.Category_Id}}">{{i.Category_name}}</option>
+
+                                    {% endfor %}
+                         
+                                </select>
+                            </div>
+
+
+                            
+                            <div class="form-group">
+
+                                <label class="form-label">SubCategory*</label>
+                                <select name="subcategory" class="form-control" id="">
+
+                                    {% for i in dataSub %}
+                                     <option value="{{i.sub_Category_Id}}">{{i.sub_Category_name}}</option>
+
+                                    {% endfor %}
+                         
+                                </select>
+                            </div>
+
+
+                            
+                            
+                            <div class="form-group">
+
+                                <label class="form-label">Description*</label>
+                                <br>
+                                <textarea required class="form-contro" name="desc" rows="4" cols="120"></textarea>
+                               
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label class="form-label">Product Image*</label>
+                                <input required type="file" class="form-control" name="img">
+
+                              
+                            </div>
+                            
+                            <button class="save-btn hover-btn" type="submit">Save</button>
+                        </div>
+
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+
+    if('{{status}}'){
+
+        Swal.fire(
+            'Item Name Already Exist',
+          
+            
+        )
+
+    }
+</script>
+{% endblock body %}

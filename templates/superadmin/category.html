@@ -1,0 +1,61 @@
+{% extends 'superadmin/base.html' %}
+{% load static %}
+{% block body %}
+<main>
+    <div class="container-fluid">
+      
+        <ol class="breadcrumb mb-30">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active">Category </li>
+        </ol>
+        <div class="row justify-content-between">
+            <div class="col-lg-12">
+                <a href="/addCategory" class="add-btn hover-btn">Add New</a>
+            </div>
+          
+            <div class="col-lg-12 col-md-12">
+                <div class="card card-static-2 mt-30 mb-30">
+                    <div class="card-title-2">
+                        <h4>All Category</h4>
+                    </div>
+                    <div class="card-body-table">
+                        <div class="table-responsive">
+                            <table class="table ucp-table table-hover">
+                                <thead>
+                                    <tr>
+                                        
+                                        
+                                        <th>Category Name</th>
+                                        
+                                        
+                                        <th style="width: 150px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for i in data  %}
+                                    <tr>
+                                       
+                                        <td>{{i.Category_name}}</td>
+                                    
+                                        <td class="action-btns">
+
+                                            <a href="/editCategory/{{i.Category_Id}}" class="edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="/deleteCategory/{{i.Category_Id}}" class="delete-btn"
+                                                title="Edit"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock body %}

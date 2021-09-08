@@ -1,0 +1,87 @@
+{% extends 'superadmin/base.html' %}
+{% load static %}
+{% block body %}
+<main>
+    <div class="container-fluid">
+      
+        <ol class="breadcrumb mb-30">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active">Items </li>
+        </ol>
+        <div class="row justify-content-between">
+            <div class="col-lg-12">
+                <a href="/addItems" class="add-btn hover-btn">Add New</a>
+            </div>
+          
+            <div class="col-lg-12 col-md-12">
+                <div class="card card-static-2 mt-30 mb-30">
+                    <div class="card-title-2">
+                        <h4>All Items</h4>
+                    </div>
+                    <div class="card-body-table">
+                        <div class="table-responsive">
+                            <table class="table ucp-table table-hover">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th style="width:100px">Image</th>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>SubCategory</th>
+                                        <th>Stock</th>
+                                        <th>Price</th>
+                                        <th>Uplaod Date</th>
+                                        <th>Status</th>
+                                        
+                                        
+                                        <th style="width: 150px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for i in data  %}
+                                    <tr>
+                                        <td>
+                                            <div class="cate-img-6">
+                                                <img src="{{i.productimg.url}}" alt="">
+                                            </div>
+                                        </td>
+                                       
+                                        <td>{{i.Items_Name}}</td>
+                                        <td>{{i.Category_Id}}</td>
+                                        <td>{{i.sub_Category_Id}}</td>
+                                        <td>{{i.Stock}}</td>
+                                        <td>{{i.Price}}</td>
+                                        <td>{{i.Date_Time.date}}</td>
+
+                                        {% if i.Stock > 0 %}
+                                        <td><span class="badge-item badge-status">Available</span></td>
+                                        
+                                        {% else %}
+
+                                        <td><span class="badge-item badge-status">Out of Stock</span></td>
+                                        {% endif %}
+                                        
+                                   
+                                    
+                                        <td class="action-btns">
+
+                                            <a href="/editItems/{{i.id}}" class="edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="/deleteitem/{{i.id}}" class="delete-btn"
+                                                title="Edit"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock body %}

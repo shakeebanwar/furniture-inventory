@@ -1,0 +1,83 @@
+{% load static %}
+{% include 'superadmin/header.html' %}
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
+        <a class="navbar-brand logo-brand" href="/Dashboard">Inventory Managment</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+        <a href="/Dashboard" class="frnt-link"><i
+                class="fas fa-external-link-alt"></i>Home</a>
+        <ul class="navbar-nav ml-auto mr-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                 
+           
+                    <a class="dropdown-item admin-dropdown-item" href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link active" href="/Dashboard">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+
+
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseShops"
+                            aria-expanded="false" aria-controls="collapseShops">
+                            <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>
+                            Category
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseShops" aria-labelledby="headingTwo"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link sub_nav_link" href="/allCategory">All Category</a>
+                                <a class="nav-link sub_nav_link" href="/addCategory">Add Category
+                                    </a>
+
+
+                                <a class="nav-link sub_nav_link" href="/allSubCategory">All SubCategory</a>
+                                <a class="nav-link sub_nav_link" href="/addSubCategory">Add SubCategory
+                                    </a>
+                            </nav>
+                        </div>
+
+                   
+                       
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cRiders"
+                            aria-expanded="false" aria-controls="collapseShops">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Itmes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="cRiders" aria-labelledby="headingTwo"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link sub_nav_link" href="/allItems">All Itmes</a>
+                                <a class="nav-link sub_nav_link" href="/addItems">Add Items </a>
+                              
+                            </nav>
+                        </div>
+                       
+                    
+
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            {% block body %}
+
+            {% endblock body %}
+            {% include 'superadmin/footer.html' %}
