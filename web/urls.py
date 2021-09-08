@@ -20,6 +20,12 @@ path('logout',logout.as_view(),name="logout"),
 path('deleteitem/<int:itemid>',deleteitem.as_view(),name="deleteitem"),
 
 
+
+#####Clientside
+path('clientside',clientside.as_view(),name="clientside"),
+
+
+
 ]
 
 

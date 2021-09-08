@@ -18,6 +18,8 @@ class combineCategory(AdminCategory,CategorySearch):
 class Adminbrand(admin.ModelAdmin):
     
     list_display=('image_tag','brandname','Category_Id')
+
+
  
 class combinebrand(Adminbrand,BrandSearch):
     pass

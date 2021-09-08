@@ -60,9 +60,8 @@ class Brand(models.Model):
 
     ### Display the image in model
     def image_tag(self):
-        return mark_safe('<img src="%s" width="150" height="150" />' % (self.brandlogo.url))
+        return mark_safe('<img src="%s" width="100" height="100" />' % (self.brandlogo.url))
 
-    image_tag.short_description = 'Image'
 
 
     # The save method to convert your text "MY naME is jOHN" to "My name is john"
@@ -133,9 +132,15 @@ class Items(models.Model):
         return self.Items_Name
 
     def image_tag(self):
-        return mark_safe('<img src="%s" width="150" height="150" />' % (self.productimg.url))
+        return mark_safe('<img src="%s" width="100" height="100" />' % (self.productimg.url))
 
-    image_tag.short_description = 'Image'
+
+    
+        
+
+   
+
+
         
 
 ##### for searching purpose#####

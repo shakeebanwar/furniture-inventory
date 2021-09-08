@@ -343,3 +343,11 @@ class deleteitem(View):
 
         except:
             return redirect('superadminlogin')
+
+
+
+
+###Client side
+class clientside(View):
+    def get(self,request):
+        return render(request,'clientside/index.html')
