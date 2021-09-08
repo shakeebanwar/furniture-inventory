@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib import admin
+from django.utils.html import mark_safe
+
+capitalizeFirstChar = lambda s: s[:1].upper() + s[1:]
 
 # Create your models here.
 
@@ -22,12 +25,22 @@ class Super_AdminAccount(models.Model):
 class Category(models.Model):
 
     Category_Id = models.AutoField(primary_key=True)
-    Category_name  = models.CharField(max_length=200, default="")
+    Category_name  = models.CharField(max_length=200, default="",unique=True)
     Super_Admin_Id=models.ForeignKey(Super_AdminAccount , on_delete=models.SET_NULL,blank=True,null=True)
     
 
     def __str__(self):
         return self.Category_name
+
+    # The save method to convert your text "MY naME is jOHN" to "My name is john"
+
+    def save(self, force_insert=False, force_update=False):
+        self.Category_name = self.Category_name.lower()
+        self.Category_name = capitalizeFirstChar(self.Category_name)
+
+        # If the name already exists
+        if not Category.objects.filter(Category_name__iexact=self.Category_name).exists():
+            super(Category, self).save(force_insert, force_update)
 
 ##### for searching purpose#####
 
@@ -37,9 +50,30 @@ class CategorySearch(admin.ModelAdmin):
 
 
 class Brand(models.Model):
-    brandname  = models.CharField(max_length=200, default="")
+    brandname  = models.CharField(max_length=200, default="",unique=True)
     Category_Id=models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
     brandlogo= models.ImageField(upload_to='brand/',default="product/dummy.jpg")
+
+    def __str__(self):
+        return self.brandname
+
+
+    ### Display the image in model
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="150" height="150" />' % (self.brandlogo.url))
+
+    image_tag.short_description = 'Image'
+
+
+    # The save method to convert your text "MY naME is jOHN" to "My name is john"
+
+    def save(self, force_insert=False, force_update=False):
+        self.brandname = self.brandname.lower()
+        self.brandname = capitalizeFirstChar(self.brandname)
+
+        # If the name already exists
+        if not Brand.objects.filter(brandname__iexact=self.brandname).exists():
+            super(Brand, self).save(force_insert, force_update)
 
 
 
@@ -54,13 +88,24 @@ class BrandSearch(admin.ModelAdmin):
 class subCategory(models.Model):
 
     sub_Category_Id = models.AutoField(primary_key=True)
-    sub_Category_name  = models.CharField(max_length=200, default="")
+    sub_Category_name  = models.CharField(max_length=200, default="",unique=True)
     Category_Id=models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
 
   
     
     def __str__(self):
         return self.sub_Category_name
+
+
+    # The save method to convert your text "MY naME is jOHN" to "My name is john"
+
+    def save(self, force_insert=False, force_update=False):
+        self.sub_Category_name = self.sub_Category_name.lower()
+        self.sub_Category_name = capitalizeFirstChar(self.sub_Category_name)
+
+        # If the name already exists
+        if not subCategory.objects.filter(sub_Category_name__iexact=self.sub_Category_name).exists():
+            super(subCategory, self).save(force_insert, force_update)
 
 
 
@@ -86,7 +131,12 @@ class Items(models.Model):
 
     def __str__(self):
         return self.Items_Name
-    
+
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="150" height="150" />' % (self.productimg.url))
+
+    image_tag.short_description = 'Image'
+        
 
 ##### for searching purpose#####
 

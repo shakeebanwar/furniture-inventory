@@ -17,7 +17,7 @@ class combineCategory(AdminCategory,CategorySearch):
 
 class Adminbrand(admin.ModelAdmin):
     
-    list_display=('brandname','Category_Id')
+    list_display=('image_tag','brandname','Category_Id')
  
 class combinebrand(Adminbrand,BrandSearch):
     pass
@@ -38,7 +38,11 @@ class combineSubCategory(AdminSubCategory,subCategorySearch):
 ###for Items
 class AdminItems(admin.ModelAdmin):
     
-    list_display=('Items_Name','Price','Stock','Category_Id','sub_Category_Id','Product_Status','Date_Time')
+    list_display=('image_tag','Items_Name','Price','Stock','Category_Id','sub_Category_Id','Date_Time')
+
+   
+
+ 
     
 
 
