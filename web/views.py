@@ -350,4 +350,43 @@ class deleteitem(View):
 ###Client side
 class clientside(View):
     def get(self,request):
-        return render(request,'clientside/index.html')
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+        return render(request,'clientside/index.html',{'categoryObj':categoryObj,'brandObj':brandObj})
+
+
+
+class contact(View):
+    def get(self,request):
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+        return render(request,'clientside/Contact.html',{'categoryObj':categoryObj,'brandObj':brandObj})
+
+
+class brands(View):
+    def get(self,request,id):
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+        specificBrand  = Brand.objects.filter(Category_Id = id)
+        return render(request,'clientside/brands.html',{'categoryObj':categoryObj,'brandObj':brandObj,'specificBrand':specificBrand})
+
+class products(View):
+    def get(self,request,id):
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+        return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj})
+
+
+
+class productview(View):
+    def get(self,request):
+        return render(request,'clientside/productview.html')
+
+
+class checkout(View):
+    def get(self,request):
+        return render(request,'clientside/checkout.html')
+
+
+
+   

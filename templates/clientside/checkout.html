@@ -1,0 +1,133 @@
+{% extends 'clientside/base.html' %}
+{% load static %}
+{% block body %}
+
+
+<br><br>
+<div class="page-content">
+    <div class="container">
+       
+        <form class="form checkout-form" action="#" method="post">
+            <div class="row mb-9">
+                <div class="col-lg-7 pr-lg-4 mb-4">
+                    <h3 class="title billing-title text-uppercase ls-10 pt-1 pb-3 mb-0">
+                        Billing Details
+                    </h3>
+                    <div class="row gutter-sm">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label>First name *</label>
+                                <input type="text" class="form-control form-control-md" name="firstname"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label>Last name *</label>
+                                <input type="text" class="form-control form-control-md" name="lastname"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="form-group">
+                        <label>Street address *</label>
+                        <input type="text" placeholder="House number and street name"
+                            class="form-control form-control-md mb-2" name="street-address-1" required>
+                        <input type="text" placeholder="Apartment, suite, unit, etc. (optional)"
+                            class="form-control form-control-md" name="street-address-2" required>
+                    </div>
+                    <div class="row gutter-sm">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Town / City *</label>
+                                <input type="text" class="form-control form-control-md" name="town" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP *</label>
+                                <input type="text" class="form-control form-control-md" name="zip" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State *</label>
+                                <div class="select-box">
+                                    <select name="country" class="form-control form-control-md">
+                                        <option value="default" selected="selected">California</option>
+                                        <option value="uk">United Kingdom (UK)</option>
+                                        <option value="us">United States</option>
+                                        <option value="fr">France</option>
+                                        <option value="aus">Australia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone *</label>
+                                <input type="text" class="form-control form-control-md" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+                  
+                  
+                    <div class="checkbox-content">
+                      
+                        
+                       
+                     
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="order-notes">Order notes (optional)</label>
+                        <textarea class="form-control mb-0" id="order-notes" name="order-notes" cols="30"
+                            rows="4"
+                            placeholder="Notes about your order, e.g special notes for delivery"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-5 mb-4 sticky-sidebar-wrapper">
+                    <div class="order-summary-wrapper sticky-sidebar">
+                        <h3 class="title text-uppercase ls-10">Your Order</h3>
+                        <div class="order-summary">
+                            <table class="order-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">
+                                            <b>Product</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bb-no">
+                                        <td class="product-name">Palm Print Jacket <i
+                                                class="fas fa-times"></i> <span
+                                                class="product-quantity">1</span></td>
+                                        <td class="product-total">$40.00</td>
+                                    </tr>
+                                 
+                                    
+                                <tfoot>
+                                
+                                    <tr class="order-total">
+                                        <th>
+                                            <b>Total</b>
+                                        </th>
+                                        <td>
+                                            <b>$100.00</b>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                           
+
+                            <div class="form-group place-order pt-6">
+                                <button type="submit" class="btn btn-dark btn-block btn-rounded">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

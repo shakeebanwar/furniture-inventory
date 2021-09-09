@@ -1,0 +1,114 @@
+{% extends 'clientside/base.html' %}
+{% load static %}
+{% block body %}
+
+
+
+    <div class="page-content">
+                <div class="container">
+                    <div class="row gutter-lg">
+                        <div class="main-content">
+                            <div class="product product-single row">
+                                <div class="col-md-6 mb-6">
+                                    <div class="product-gallery product-gallery-sticky">
+                                        <div
+                                            class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1 gutter-no">
+                                            <figure class="product-image">
+                                                <img src="{% static '' %}client/assets/images/products/default/1-800x900.jpg"
+                                                    data-zoom-image="{% static '' %}client/assets/images/products/default/1-800x900.jpg"
+                                                    alt="Electronics Black Wrist Watch" width="800" height="900">
+                                            </figure>
+                                        
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 mb-md-6">
+                                    <div class="product-details" data-sticky-options="{'minWidth': 767}">
+                                        <h2 class="product-title">Electronics Black Wrist Watch</h2>
+                                        <div class="product-bm-wrapper">
+                                            
+                                            <div class="product-meta">
+                                                <div class="product-categories">
+                                                    Category:
+                                                    <span class="product-category"><a href="#">Electronics</a></span>
+                                                </div>
+                                             
+                                            </div>
+                                        </div>
+
+                                        <hr class="product-divider">
+
+                                        <div class="product-price"><ins class="new-price">$40.00</ins></div>
+
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 80%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="#product-tab-reviews" class="rating-reviews scroll-to">(3
+                                                Reviews)</a>
+                                        </div>
+
+                                        <div class="product-short-desc">
+                                            <ul class="list-type-check list-style-none">
+                                                <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
+                                                <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
+                                                <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
+                                            </ul>
+                                        </div>
+
+                                        <hr class="product-divider">
+
+                                     
+                                       
+
+                                        <div class="product-variation-price">
+                                            <span></span>
+                                        </div>
+
+                                        <div class="fix-bottom product-sticky-content sticky-content">
+                                            <div class="product-form container">
+                                                <div class="product-qty-form">
+                                                    <div class="input-group">
+                                                        <input class="quantity form-control" type="number" min="1"
+                                                            max="10000000">
+                                                        <button class="quantity-plus w-icon-plus"></button>
+                                                        <button class="quantity-minus w-icon-minus"></button>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-cart">
+                                                    <i class="w-icon-cart"></i>
+                                                    <span>Checkout</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="social-links-wrapper">
+                                            <div class="social-links">
+                                                <div class="social-icons social-no-color border-thin">
+                                                    <a href="#" class="social-icon social-facebook w-icon-facebook"></a>
+                                                    <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
+                                                    <a href="#"
+                                                        class="social-icon social-pinterest fab fa-pinterest-p"></a>
+                                                    <a href="#" class="social-icon social-whatsapp fab fa-whatsapp"></a>
+                                                    <a href="#"
+                                                        class="social-icon social-youtube fab fa-linkedin-in"></a>
+                                                </div>
+                                            </div>
+                                            <span class="divider d-xs-show"></span>
+                                            <div class="product-link-wrapper d-flex">
+                                                <a href="#"
+                                                    class="btn-product-icon btn-wishlist w-icon-heart"><span></span></a>
+                                                <a href="#"
+                                                    class="btn-product-icon btn-compare btn-icon-left w-icon-compare"><span></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+{% endblock body %}

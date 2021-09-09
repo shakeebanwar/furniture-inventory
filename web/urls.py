@@ -4,7 +4,7 @@ from web.views import *
 urlpatterns = [
 
 #web urls  home
-path('',superadminlogin.as_view(),name="superadminlogin"),
+# path('',superadminlogin.as_view(),name="superadminlogin"),
 path('superadminlogin',superadminlogin.as_view(),name="superadminlogin"),
 path('Dashboard',Dashboard.as_view(),name="Dashboard"),
 path('allCategory',allCategory.as_view(),name="allCategory"),
@@ -22,7 +22,12 @@ path('deleteitem/<int:itemid>',deleteitem.as_view(),name="deleteitem"),
 
 
 #####Clientside
-path('clientside',clientside.as_view(),name="clientside"),
+path('',clientside.as_view(),name="clientside"),
+path('contact',contact.as_view(),name="contact"),
+path('brands/<int:id>',brands.as_view(),name="brands"),
+path('products/<int:id>',products.as_view(),name="products"),
+path('productview',productview.as_view(),name="productview"),
+path('checkout',checkout.as_view(),name="checkout"),
 
 
 

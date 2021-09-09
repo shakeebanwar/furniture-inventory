@@ -32,15 +32,6 @@ class Category(models.Model):
     def __str__(self):
         return self.Category_name
 
-    # The save method to convert your text "MY naME is jOHN" to "My name is john"
-
-    def save(self, force_insert=False, force_update=False):
-        self.Category_name = self.Category_name.lower()
-        self.Category_name = capitalizeFirstChar(self.Category_name)
-
-        # If the name already exists
-        if not Category.objects.filter(Category_name__iexact=self.Category_name).exists():
-            super(Category, self).save(force_insert, force_update)
 
 ##### for searching purpose#####
 
@@ -64,15 +55,9 @@ class Brand(models.Model):
 
 
 
-    # The save method to convert your text "MY naME is jOHN" to "My name is john"
 
-    def save(self, force_insert=False, force_update=False):
-        self.brandname = self.brandname.lower()
-        self.brandname = capitalizeFirstChar(self.brandname)
 
-        # If the name already exists
-        if not Brand.objects.filter(brandname__iexact=self.brandname).exists():
-            super(Brand, self).save(force_insert, force_update)
+      
 
 
 
@@ -96,15 +81,7 @@ class subCategory(models.Model):
         return self.sub_Category_name
 
 
-    # The save method to convert your text "MY naME is jOHN" to "My name is john"
 
-    def save(self, force_insert=False, force_update=False):
-        self.sub_Category_name = self.sub_Category_name.lower()
-        self.sub_Category_name = capitalizeFirstChar(self.sub_Category_name)
-
-        # If the name already exists
-        if not subCategory.objects.filter(sub_Category_name__iexact=self.sub_Category_name).exists():
-            super(subCategory, self).save(force_insert, force_update)
 
 
 
