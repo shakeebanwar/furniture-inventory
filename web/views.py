@@ -386,8 +386,12 @@ class productview(View):
 
 
 class checkout(View):
-    def get(self,request):
-        return render(request,'clientside/checkout.html')
+    def get(self,request,id,quantity):
+        itemObj = Items.objects.get(id = id)
+        return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity})
+
+    def post(self,request,id,quantity):
+        return HttpResponse("POST")
 
 
 

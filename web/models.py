@@ -115,15 +115,31 @@ class Items(models.Model):
 
     
         
-
-   
-
-
-        
-
 ##### for searching purpose#####
 
 class ItemSearch(admin.ModelAdmin):
     search_fields = ['Items_Name','Stock','Price','Description','Product_Status']
+
+
+class customerOrder(models.Model):
+    firstname = models.CharField(max_length=255, default="")
+    lastname = models.CharField(max_length=255, default="")
+    streetAdress = models.CharField(max_length=255, default="")
+    city = models.CharField(max_length=255, default="")
+    phone = models.CharField(max_length=20, default="")
+    zipcode = models.CharField(max_length=20, default="")
+    ordernote = models.CharField(max_length=300, default="")
+    productid = models.ForeignKey(Items , on_delete=models.SET_NULL,blank=True,null=True)
+
+    def __str__(self):
+        return self.firstname
+
+
+##### for searching purpose#####
+
+class orderSearch(admin.ModelAdmin):
+    search_fields = ['firstname','lastname','city','phone','streetAdress','zipcode']
+
+
 
 

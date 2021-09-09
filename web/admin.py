@@ -44,12 +44,20 @@ class AdminItems(admin.ModelAdmin):
 
    
 
- 
-    
-
-
 class combineItems(AdminItems,ItemSearch):
     pass
+
+
+#####for customer order
+
+class AdminOrders(admin.ModelAdmin):
+    list_display=('firstname','lastname','city','phone','zipcode')
+
+
+class combineOrders(AdminOrders,orderSearch):
+    pass
+
+
 
 
 
@@ -60,3 +68,4 @@ admin.site.register(Brand,combinebrand)
 admin.site.register(Super_AdminAccount)
 admin.site.register(subCategory,combineSubCategory)
 admin.site.register(Items,combineItems)
+admin.site.register(customerOrder,combineOrders)

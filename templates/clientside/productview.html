@@ -52,11 +52,7 @@
                                         </div>
 
                                         <div class="product-short-desc">
-                                            {% comment %} <ul class="list-type-check list-style-none">
-                                                <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                                <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
-                                                <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
-                                            </ul> {% endcomment %}
+                                            
                                             <p style="text-align:justify;">{{itemObj.Description}}</p>
                                         </div>
 
@@ -74,17 +70,22 @@
                                                 <div class="product-qty-form">
                                                     <div class="input-group">
                                                         <input class="quantity form-control" type="number" 
-                                                           value="0" id="quantity">
+                                                           value="1" id="quantity">
                                                         <button class="w-icon-plus" onclick="plus()"></button>
                                                         <button class="w-icon-minus" onclick="minus()"></button>
                                                     </div>
                                                 </div>
 
                                             {% if itemObj.Stock > 0 %}
-                                                <button class="btn btn-primary btn-cart">
+                                            
+
+                                                <button type="button" class="btn btn-primary btn-cart" onclick="checkout()">
                                                     <i class="w-icon-cart"></i>
                                                     <span>Checkout</span>
                                                 </button>
+
+
+                                    
                                             </div>
                                             
                                             
@@ -147,6 +148,13 @@
 
             document.getElementById('quantity').value = Number(document.getElementById('quantity').value)  - 1
         }
+}
+
+function checkout(){
+
+
+    quantity = document.getElementById('quantity').value
+    window.location.href = `/checkout/{{itemObj.id}}/${quantity}`
 }
 </script>
 {% endblock body %}
