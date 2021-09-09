@@ -103,6 +103,7 @@ class Items(models.Model):
     Date_Time = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     Category_Id = models.ForeignKey(Category , on_delete=models.SET_NULL,blank=True,null=True)
     sub_Category_Id = models.ForeignKey(subCategory , on_delete=models.SET_NULL,blank=True,null=True)
+    brandid = models.ForeignKey(Brand , on_delete=models.SET_NULL,blank=True,null=True)
     productimg= models.ImageField(upload_to='product/',default="product/dummy.jpg")
 
     def __str__(self):

@@ -26,7 +26,7 @@ path('',clientside.as_view(),name="clientside"),
 path('contact',contact.as_view(),name="contact"),
 path('brands/<int:id>',brands.as_view(),name="brands"),
 path('products/<int:id>',products.as_view(),name="products"),
-path('productview',productview.as_view(),name="productview"),
+path('productview/<int:id>',productview.as_view(),name="productview"),
 path('checkout',checkout.as_view(),name="checkout"),
 
 

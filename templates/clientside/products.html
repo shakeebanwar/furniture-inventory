@@ -32,31 +32,30 @@
                         }
                     }
                 }">
+
+                {% for item in itemObj %}
                 <div class="product product-simple">
                     <figure class="product-media">
-                        <a href="product-default.html">
-                            <img src="{% static '' %}client/assets/images/products/elements/1.jpg" alt="Product" width="295"
+                        <a href="/productview/{{item.id}}">
+                            <img src="{{item.productimg.url}}" alt="Product" width="295"
                                 height="335" />
                         </a>
-                        <div class="product-label-group">
-                            <label class="product-label label-discount">-25%</label>
-                        </div>
+                     
                         <div class="product-action-vertical">
                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
                                 title="Compare"></a>
                         </div>
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                            <a href="/productview/{{item.id}}" class="btn-product btn-quickview" title="Quick View">Quick
                                 View</a>
                         </div>
                     </figure>
                     <div class="product-details">
                         <a href="#" class="btn-wishlist w-icon-heart" title="Add to wishlist"></a>
                         <div class="product-cat">
-                            <a href="shop-banner-sidebar.html">Electronics</a>
+                          {{item.Category_Id}}
                         </div>
-                        <h4 class="product-name"><a href="product-default.html">Electronics Black Wrist
-                                Watch</a></h4>
+                        <h4 class="product-name"><a href="product-default.html">{{item.Items_Name}}</a></h4>
                         <div class="ratings-container">
                             <div class="ratings-full">
                                 <span class="ratings" style="width: 100%;"></span>
@@ -66,142 +65,23 @@
                         </div>
                         <div class="product-pa-wrapper">
                             <div class="product-price">
-                                <ins class="new-price">$25.68</ins><del class="old-price">$30.45</del>
+                                <ins class="new-price">${{item.Price}}</ins>
                             </div>
-                            <div class="product-action">
-                                <a href="#" title="Add to Cart"
-                                    class="btn-cart btn-product btn btn-link btn-underline">Add
-                                    to Cart</a>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
-                <div class="product product-simple">
-                    <figure class="product-media">
-                        <a href="product-default.html">
-                            <img src="{% static '' %}client/assets/images/products/elements/2.jpg" alt="Product" width="295"
-                                height="335" />
-                        </a>
-                        <div class="product-label-group">
-                            <label class="product-label label-discount">-25%</label>
-                            <label class="product-label label-new">New</label>
-                        </div>
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                title="Compare"></a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                View</a>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <a href="#" class="btn-wishlist w-icon-heart" title="Add to wishlist"></a>
-                        <div class="product-cat">
-                            <a href="shop-banner-sidebar.html">Sports</a>
-                        </div>
-                        <h4 class="product-name"><a href="product-default.html">Summer Sports Shoes</a></h4>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width: 100%;"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
-                        </div>
-                        <div class="product-pa-wrapper">
-                            <div class="product-price">
-                                <ins class="new-price">$86.00</ins><del class="old-price">$120.00</del>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" title="Add to Cart"
-                                    class="btn-cart btn-product btn btn-link btn-underline">Add
-                                    to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-simple">
-                    <figure class="product-media">
-                        <a href="product-default.html">
-                            <img src="{% static '' %}client/assets/images/products/elements/3.jpg" alt="Product" width="295"
-                                height="335" />
-                        </a>
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                title="Compare"></a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                View</a>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <a href="#" class="btn-wishlist w-icon-heart" title="Add to wishlist"></a>
-                        <div class="product-cat">
-                            <a href="shop-banner-sidebar.html">Electronics</a>
-                        </div>
-                        <h4 class="product-name"><a href="product-default.html">Charming Design Watch</a>
-                        </h4>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width: 100%;"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
-                        </div>
-                        <div class="product-pa-wrapper">
-                            <div class="product-price">
-                                $30.00
-                            </div>
-                            <div class="product-action">
-                                <a href="#" title="Add to Cart"
-                                    class="btn-cart btn-product btn btn-link btn-underline">Add
-                                    to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-simple">
-                    <figure class="product-media">
-                        <a href="product-default.html">
-                            <img src="{% static '' %}client/assets/images/products/elements/4-1.jpg" alt="Product" width="295"
-                                height="335" />
-                        </a>
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                title="Compare"></a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                View</a>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <a href="#" class="btn-wishlist w-icon-heart" title="Add to wishlist"></a>
-                        <div class="product-cat">
-                            <a href="shop-banner-sidebar.html">Electronics</a>
-                        </div>
-                        <h4 class="product-name"><a href="product-default.html">Populated Gaming Mouse</a>
-                        </h4>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width: 100%;"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
-                        </div>
-                        <div class="product-pa-wrapper">
-                            <div class="product-price">
-                                $236.00
-                            </div>
-                            <div class="product-action">
-                                <a href="#" title="Add to Cart"
-                                    class="btn-cart btn-product btn btn-link btn-underline">Add
-                                    to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
+                {% endfor %}
+
+
+              
+
+
+             
+
+                
             </div>
         </section>
 
@@ -209,7 +89,7 @@
 
       
         <section class="product-list-section">
-            <h2 class="title title-center mb-5">Products List</h2>
+            <h2 class="title title-center mb-5">Recommended Products</h2>
             <div class="row">
                 <div class="col-lg-9 mb-5">
                     <div class="row cols-lg-1 cols-md-1 cols-sm-1">
@@ -238,8 +118,7 @@
                                 <div class="product-price">$86.00</div>
                                 <ul class="product-desc">
                                     <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                    <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
-                                    <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
+                               
                                 </ul>
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart" title="Add to Cart"><i
@@ -251,116 +130,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product product-list">
-                            <figure class="product-media">
-                                <a href="product-default.html">
-                                    <img src="{% static '' %}client/assets/images/products/elements/3.jpg" alt="Product"
-                                        width="330" height="338" />
-                                </a>
-                                <div class="product-label-group">
-                                    <label class="product-label label-new">New</label>
-                                </div>
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
-                                        title="Quick View"></a>
-                                </div>
-                            </figure>
-                            <div class="product-details">
-                                <h4 class="product-name">
-                                    <a href="product-default.html">Charming Design Watch</a>
-                                </h4>
-                                <div class="ratings-container">
-                                    <div class="ratings-full">
-                                        <span class="ratings" style="width: 100%;"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                    <a href="#" class="rating-reviews">(3 Reviews)</a>
-                                </div>
-                                <div class="product-price">$30.00</div>
-                                <ul class="product-desc">
-                                    <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                    <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
-                                    <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
-                                </ul>
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to Cart"><i
-                                            class="w-icon-cart"></i> Add To Cart</a>
-                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                        title="Add to wishlist"></a>
-                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                        title="Compare"></a>
-                                </div>
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="title-link-wrapper mb-2">
-                        <h4 class="title title-link title-sm font-weight-bold pt-0 pb-1">Featured</h4>
-                    </div>
-                    <div class="widget widget-products">
-                        <div class="product product-widget">
-                            <figure class="product-media">
-                                <a href="product-default.html">
-                                    <img src="{% static '' %}client/assets/images/products/elements/2.jpg" alt="Product"
-                                        width="100" height="106" />
-                                </a>
-                            </figure>
-                            <div class="product-details">
-                                <h4 class="product-name">
-                                    <a href="product-default.html">Summer Sport Shoes</a>
-                                </h4>
-                                <div class="ratings-container">
-                                    <div class="ratings-full">
-                                        <span class="ratings" style="width: 100%;"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                </div>
-                                <div class="product-price">$86.00</div>
-                            </div>
-                        </div>
-                        <div class="product product-widget">
-                            <figure class="product-media">
-                                <a href="product-default.html">
-                                    <img src="{% static '' %}client/assets/images/products/elements/3.jpg" alt="Product"
-                                        width="100" height="106" />
-                                </a>
-                            </figure>
-                            <div class="product-details">
-                                <h4 class="product-name">
-                                    <a href="product-default.html">Charming Design Watch</a>
-                                </h4>
-                                <div class="ratings-container">
-                                    <div class="ratings-full">
-                                        <span class="ratings" style="width: 100%;"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                </div>
-                                <div class="product-price">$30.00</div>
-                            </div>
-                        </div>
-                        <div class="product product-widget">
-                            <figure class="product-media">
-                                <a href="product-default.html">
-                                    <img src="{% static '' %}client/assets/images/products/elements/4-1.jpg" alt="Product"
-                                        width="100" height="106" />
-                                </a>
-                            </figure>
-                            <div class="product-details">
-                                <h4 class="product-name">
-                                    <a href="product-default.html">Populated Gaming Mouse</a>
-                                </h4>
-                                <div class="ratings-container">
-                                    <div class="ratings-full">
-                                        <span class="ratings" style="width: 100%;"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                </div>
-                                <div class="product-price">$236.00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+           
             </div>
         </section>
 

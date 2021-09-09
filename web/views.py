@@ -374,13 +374,15 @@ class products(View):
     def get(self,request,id):
         categoryObj = Category.objects.all()
         brandObj = Brand.objects.all()
-        return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj})
+        itemObj = Items.objects.filter(brandid = id)
+        return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj,'itemObj':itemObj})
 
 
 
 class productview(View):
-    def get(self,request):
-        return render(request,'clientside/productview.html')
+    def get(self,request,id):
+        itemObj = Items.objects.get(id = id)
+        return render(request,'clientside/productview.html',{'itemObj':itemObj})
 
 
 class checkout(View):
