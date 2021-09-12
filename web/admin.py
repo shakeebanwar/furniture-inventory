@@ -51,7 +51,7 @@ class combineItems(AdminItems,ItemSearch):
 #####for customer order
 
 class AdminOrders(admin.ModelAdmin):
-    list_display=('firstname','lastname','city','phone','zipcode')
+    list_display=('firstname','lastname','city','phone','status')
 
 
 class combineOrders(AdminOrders,orderSearch):
@@ -69,3 +69,4 @@ admin.site.register(Super_AdminAccount)
 admin.site.register(subCategory,combineSubCategory)
 admin.site.register(Items,combineItems)
 admin.site.register(customerOrder,combineOrders)
+admin.site.register(signup,userSearch)

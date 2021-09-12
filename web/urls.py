@@ -24,6 +24,8 @@ path('deleteitem/<int:itemid>',deleteitem.as_view(),name="deleteitem"),
 #####Clientside
 path('',clientside.as_view(),name="clientside"),
 path('contact',contact.as_view(),name="contact"),
+path('signup',usersignup.as_view(),name="signup"),
+path('login',login.as_view(),name="login"),
 path('brands/<int:id>',brands.as_view(),name="brands"),
 path('products/<int:id>',products.as_view(),name="products"),
 path('productview/<int:id>',productview.as_view(),name="productview"),

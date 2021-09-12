@@ -387,12 +387,94 @@ class productview(View):
 
 class checkout(View):
     def get(self,request,id,quantity):
-        itemObj = Items.objects.get(id = id)
-        return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity})
+        if request.session.has_key('userid'):
+            categoryObj = Category.objects.all()
+            brandObj = Brand.objects.all()
+            itemObj = Items.objects.get(id = id)
+            return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity,'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':'hide'})
+
+        else:
+            return redirect('signup')
 
     def post(self,request,id,quantity):
-        return HttpResponse("POST")
+
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
+        streetAddress = request.POST['street-address-1']
+        town = request.POST['town']
+        phone = request.POST['phone']
+        order_notes = request.POST['order_notes']
+        itemObj = Items.objects.get(id = id)
+        if itemObj.Stock == 0:
+            
+            return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity,'categoryObj':categoryObj,'brandObj':brandObj,'redirect':False,'messagestatus':'warning','message':'Sorry Your Order is out of stock'})
+
+        elif itemObj.Stock < quantity:
+            return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity,'categoryObj':categoryObj,'brandObj':brandObj,'redirect':False,'messagestatus':'warning','message':f'Only {itemObj.Stock} Quantity is available'})
 
 
 
+
+
+
+        userObj = signup.objects.get(id= request.session['userid'])
+        data = customerOrder(firstname=firstname,lastname=lastname,streetAdress=streetAddress,city=town,ordernote=order_notes,productid=itemObj,userid=userObj)
+        data.save()
+        itemObj.Stock = itemObj.Stock - quantity
+        itemObj.save()
+
+
+        return render(request,'clientside/checkout.html',{'itemObj':itemObj,'quantity':quantity,'categoryObj':categoryObj,'brandObj':brandObj,'redirect':'True','messagestatus':'success','message':'Your Order has been Book Successfully'})
    
+
+
+
+
+class usersignup(View):
+    def get(self,request):
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+        return render(request,'clientside/auth.html',{'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':'hide'})
+
+
+    def post(self,request):
+       
+        email = request.POST['email']
+        password = request.POST['password']
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+
+        ##check if already exist
+
+        existObj = signup.objects.filter(Email = email)
+        if not existObj:
+            signup(Email = email,Password = handler.hash(password)).save()
+            return render(request,'clientside/auth.html',{'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':"success",'message':"Account Created Successfully"})
+
+        else:
+            return render(request,'clientside/auth.html',{'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':"warning",'message':"Email Already Exist"})
+
+
+
+class login(View):
+    def post(self,request):
+        email = request.POST['email']
+        password = request.POST['password']
+        categoryObj = Category.objects.all()
+        brandObj = Brand.objects.all()
+
+        fetchUsernObj = signup.objects.filter(Email = email)
+        if fetchUsernObj and handler.verify(password,fetchUsernObj[0].Password):
+            request.session['userid'] = fetchUsernObj[0].id
+            return render(request,'clientside/auth.html',{'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':"success",'message':"Login SuccessFully",'redirect':True})
+
+
+
+        else:
+            return render(request,'clientside/auth.html',{'categoryObj':categoryObj,'brandObj':brandObj,'messagestatus':"warning",'message':"Invalid Credential"})
+
+
+

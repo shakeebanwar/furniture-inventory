@@ -2,7 +2,13 @@ from django.db import models
 from django.contrib import admin
 from django.utils.html import mark_safe
 
-capitalizeFirstChar = lambda s: s[:1].upper() + s[1:]
+
+orderStatus = (
+    ('pending','pending'),
+    ('processing','processing'),
+    ('done','done')
+    
+)
 
 # Create your models here.
 
@@ -121,15 +127,36 @@ class ItemSearch(admin.ModelAdmin):
     search_fields = ['Items_Name','Stock','Price','Description','Product_Status']
 
 
+
+###User Signup
+class signup(models.Model):
+    Email=models.EmailField(max_length=255, default="")
+    Password=models.TextField(max_length=3000, default="")
+    Registration_Date = models.DateField(auto_now_add=True,blank=True,null=True)
+
+    def __str__(self):
+        return self.Email
+
+
+
+##### for searching purpose#####
+
+class userSearch(admin.ModelAdmin):
+    search_fields = ['Email']
+
+
+
+
 class customerOrder(models.Model):
     firstname = models.CharField(max_length=255, default="")
     lastname = models.CharField(max_length=255, default="")
     streetAdress = models.CharField(max_length=255, default="")
     city = models.CharField(max_length=255, default="")
     phone = models.CharField(max_length=20, default="")
-    zipcode = models.CharField(max_length=20, default="")
     ordernote = models.CharField(max_length=300, default="")
+    status = models.CharField(max_length=20,choices = orderStatus  ,default="pending")
     productid = models.ForeignKey(Items , on_delete=models.SET_NULL,blank=True,null=True)
+    userid = models.ForeignKey(signup , on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
         return self.firstname
@@ -138,7 +165,7 @@ class customerOrder(models.Model):
 ##### for searching purpose#####
 
 class orderSearch(admin.ModelAdmin):
-    search_fields = ['firstname','lastname','city','phone','streetAdress','zipcode']
+    search_fields = ['firstname','lastname','city','phone','streetAdress']
 
 
 
