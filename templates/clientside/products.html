@@ -4,11 +4,24 @@
 
 
 
+
 <div class="page-content mb-10 pb-2">
+
+
     <div class="container">
    
         <section class="mb-6 product-carousel">
+
+        
+        {% if topRatedStatus == 'true' %}
+        
             <h2 class="title title-center mb-5">Top Rated</h2>
+
+        {% else %}
+
+        <h2 class="title title-center mb-5">No Products Available</h2>
+        
+        {% endif %}
             <div class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-sm-2 cols-2" data-owl-options="{
                     'items': 5,
                     'nav': true,
@@ -89,14 +102,20 @@
 
       
         <section class="product-list-section">
+        {% if recomandedStatus == 'true'  %}
+            
             <h2 class="title title-center mb-5">Recommended Products</h2>
+        {% endif %}
             <div class="row">
                 <div class="col-lg-9 mb-5">
+                    {% for j in recomanded  %}
+                    
+                
                     <div class="row cols-lg-1 cols-md-1 cols-sm-1">
                         <div class="product product-list">
                             <figure class="product-media">
-                                <a href="product-default.html">
-                                    <img src="{% static '' %}client/assets/images/products/elements/2.jpg" alt="Product"
+                                <a href="/productview/{{j.id}}">
+                                    <img src="{{j.productimg.url}}" alt="Product"
                                         width="330" height="338" />
                                 </a>
                                 <div class="product-action-vertical">
@@ -106,7 +125,7 @@
                             </figure>
                             <div class="product-details">
                                 <h4 class="product-name">
-                                    <a href="product-default.html">Summer Sport Shoes</a>
+                                    <a href="/productview/{{j.id}}">{{j.Items_Name}}</a>
                                 </h4>
                                 <div class="ratings-container">
                                     <div class="ratings-full">
@@ -115,23 +134,19 @@
                                     </div>
                                     <a href="#" class="rating-reviews">(3 Reviews)</a>
                                 </div>
-                                <div class="product-price">$86.00</div>
-                                <ul class="product-desc">
-                                    <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
+                                <div class="product-price">${{j.Price}}</div>
                                
-                                </ul>
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to Cart"><i
-                                            class="w-icon-cart"></i> Add To Cart</a>
-                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                        title="Add to wishlist"></a>
-                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                        title="Compare"></a>
-                                </div>
                             </div>
                         </div>
                     
                     </div>
+
+
+                        {% endfor %}
+
+
+
+                    
                 </div>
            
             </div>

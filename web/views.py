@@ -374,8 +374,38 @@ class products(View):
     def get(self,request,id):
         categoryObj = Category.objects.all()
         brandObj = Brand.objects.all()
-        itemObj = Items.objects.filter(brandid = id)
-        return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj,'itemObj':itemObj})
+        if not request.session.has_key('userid'):
+            itemObj = Items.objects.filter(brandid = id)
+            if itemObj:
+                topRatedStatus = 'true'
+            else:
+                topRatedStatus = 'false'
+
+            return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj,'itemObj':itemObj,'topRatedStatus':topRatedStatus})
+
+        else:
+            itemObj = Items.objects.filter(brandid = id)
+            if itemObj:
+                topRatedStatus = 'true'
+            else:
+                topRatedStatus = 'false'
+
+            recomandedList = list()
+            recomanded = customerOrder.objects.filter(userid = request.session['userid'])
+           
+            for j in recomanded:
+                recomandedList.append(j.productid.Category_Id.Category_Id)
+
+            if len(recomandedList) > 0:
+                recomandedStatus = 'true'
+
+            else:
+                recomandedStatus = 'false'
+
+
+            recomedObj = Items.objects.filter(Category_Id__in = recomandedList)
+            return render(request,'clientside/products.html',{'categoryObj':categoryObj,'brandObj':brandObj,'itemObj':itemObj,'recomanded':recomedObj,'recomandedStatus':recomandedStatus,'topRatedStatus':topRatedStatus})
+         
 
 
 
@@ -421,7 +451,7 @@ class checkout(View):
 
 
         userObj = signup.objects.get(id= request.session['userid'])
-        data = customerOrder(firstname=firstname,lastname=lastname,streetAdress=streetAddress,city=town,ordernote=order_notes,productid=itemObj,userid=userObj)
+        data = customerOrder(firstname=firstname,lastname=lastname,streetAdress=streetAddress,city=town,ordernote=order_notes,productid=itemObj,userid=userObj,quantity = quantity,phone=phone)
         data.save()
         itemObj.Stock = itemObj.Stock - quantity
         itemObj.save()

@@ -154,6 +154,7 @@ class customerOrder(models.Model):
     city = models.CharField(max_length=255, default="")
     phone = models.CharField(max_length=20, default="")
     ordernote = models.CharField(max_length=300, default="")
+    quantity = models.IntegerField(default=1)
     status = models.CharField(max_length=20,choices = orderStatus  ,default="pending")
     productid = models.ForeignKey(Items , on_delete=models.SET_NULL,blank=True,null=True)
     userid = models.ForeignKey(signup , on_delete=models.SET_NULL,blank=True,null=True)
